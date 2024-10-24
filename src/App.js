@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {memo} from "react";
+import { MapProvider } from "./providers/MapProvider";
+import Layer from "./components/layers/Layer";
+import Source from "./lib/Source";
+import Layers from "./components/layers/Layers";
+import Controls from "./components/controls/Controls";
+import { LayersControl } from "./components/controls/LayersControl";
+import View from "./components/View";
+import { LegendControl } from "./components/controls/Legend/Legend";
 
-function App() {
+const Map = ({ mapConfig, viewConfig, layers, legend }) => {
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+    <MapProvider {...mapConfig} >
+        <View {...viewConfig} />
+        <Layers>
+        {layers &&
+          layers.map((config, index) => {
+            const {
+              type: LayerType,
+              props: {
+                source: { type: SourceType, props: sourceProps },
+                ...layerProps
+              },
+            } = config;
+
+            const source = Source({ is: SourceType, ...sourceProps });
+
+            return (
+              <Layer key={index} is={LayerType} source={source} {...layerProps} />
+            );
+          })}
+        </Layers>
+        <Controls>
+            <LayersControl />
+            <LegendControl items={legend} />
+        </Controls>
+
+    </MapProvider>
   );
 }
 
-export default App;
+export default memo(Map);
