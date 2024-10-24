@@ -7,7 +7,7 @@ import { fromLonLat } from "ol/proj";
 // const mapEvents = new MapEvents();
 
 //Map Config
-const MapConfig = {
+const DefaultMapConfig = {
   className: "ol-map",
   style: {
     width: "100%", 
@@ -22,14 +22,14 @@ const MapConfig = {
 
 
 // View Config
-const ViewConfig = {
+const DefaultViewConfig = {
     center: fromLonLat([-110.875, 37.345]),
     zoom: 5
 };
 
 
 // Array of layer configurations
-const LayerConfig = [
+const DefaultLayerConfig = [
     {
       type: "WebGLTile",
       props: {
@@ -59,29 +59,53 @@ const LayerConfig = [
         name: "Flooding River Gauges"
       }
     },
-
-    {
-      type: "ImageLayer",
-      props: {
-        source:{
-          type: "ImageArcGISRest",
-          props:{
-            url: 'https://maps.water.noaa.gov/server/rest/services/reference/static_nwm_flowlines/MapServer',
-            params: {
-              LAYERS: "show:0"
-            }
-          }
-        },
-        visible: false,
-        name: "Static NWM Flow Lines"
-      }
-    }
 ];
 
 
+const DefaultLegend = [
+    {
+      label: "Major Flood",
+      color: "#cc33ff"
+    },
+    {
+      label: "Moderate Flood",
+      color: "#ff0000"
+    },
+    {
+      label: "Minor Flood",
+      color: "#ff9900"
+    },
+    {
+      label: "Action",
+      color: "#ffff00"
+    },
+    {
+      label: "No Flood",
+      color: "#00ff00"
+    },
+    {
+      label: "Flood Category Not Defined",
+      color: "#72afe9"
+    },
+    {
+      label: "Low Water Threshold",
+      color: "#906320"
+    },
+    {
+      label: "Data Not Current",
+      color: "#bdc2bb"
+    },
+    {
+      label: "Out of Service",
+      color: "#666666"
+    }
+  ];
+  
+
 
 export { 
-  LayerConfig, 
-  ViewConfig, 
-  MapConfig 
+  DefaultLayerConfig, 
+  DefaultViewConfig, 
+  DefaultMapConfig,
+  DefaultLegend
 };

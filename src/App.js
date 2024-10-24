@@ -7,14 +7,14 @@ import Controls from "./components/controls/Controls";
 import { LayersControl } from "./components/controls/LayersControl";
 import View from "./components/View";
 import { LegendControl } from "./components/controls/Legend/Legend";
-import { MapConfig, ViewConfig, LayerConfig } from "./data/defaults";
+import { DefaultLayerConfig, DefaultMapConfig, DefaultViewConfig, DefaultLegend } from "./data/defaults";
 
 const Map = (
   { 
-    mapConfig = MapConfig, 
-    viewConfig = ViewConfig, 
-    layers = LayerConfig, 
-    legend = {} 
+    mapConfig = DefaultMapConfig, 
+    viewConfig = DefaultViewConfig, 
+    layers = DefaultLayerConfig, 
+    legend = DefaultLegend
   }) => {
   
   return (
