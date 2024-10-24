@@ -29,8 +29,8 @@
     "workbox-streams": "^6.6.0"
   },
   "scripts": {
-    "start": "webpack serve --config config/webpack.config.js",
-    "build": "webpack --config config/webpack.config.js"
+    "start": "webpack serve --mode development",
+    "build": "webpack --mode production"
   },
   "eslintConfig": {
     "extends": [
