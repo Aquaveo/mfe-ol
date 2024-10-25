@@ -11,12 +11,12 @@ const LegendWrapper = styled.div`
 
 const LegendControlContainer = styled.div`
   background-color: white;
-  padding: ${(props) => (props.isexpanded ? '10px' : '5px')};
+  padding: ${(props) => (props.$isexpanded ? '10px' : '5px')};
   z-index: 1000;
   border: 1px solid #ccc;
   border-radius: 4px;
-  width: ${(props) => (props.isexpanded ? '200px' : '40px')};
-  height: ${(props) => (props.isexpanded ? 'auto' : '40px')};
+  width: ${(props) => (props.$isexpanded ? '200px' : '40px')};
+  height: ${(props) => (props.$isexpanded ? 'auto' : '40px')};
   display: flex;
   flex-direction: column;
   align-items: center;
