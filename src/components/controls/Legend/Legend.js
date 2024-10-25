@@ -11,12 +11,12 @@ const LegendWrapper = styled.div`
 
 const LegendControlContainer = styled.div`
   background-color: white;
-  padding: ${(props) => (props.isExpanded ? '10px' : '5px')};
+  padding: ${(props) => (props.isexpanded ? '10px' : '5px')};
   z-index: 1000;
   border: 1px solid #ccc;
   border-radius: 4px;
-  width: ${(props) => (props.isExpanded ? '200px' : '40px')};
-  height: ${(props) => (props.isExpanded ? 'auto' : '40px')};
+  width: ${(props) => (props.isexpanded ? '200px' : '40px')};
+  height: ${(props) => (props.isexpanded ? 'auto' : '40px')};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -43,15 +43,15 @@ const CloseButton = styled.button`
 
 
 const LegendControl = ({items}) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isexpanded, setisexpanded] = useState(false);
 
   return (
     <LegendWrapper>
-      <LegendControlContainer isExpanded={isExpanded}>
-        {isExpanded ? (
+      <LegendControlContainer $isexpanded={isexpanded}>
+        {isexpanded ? (
           // Expanded layer control without title and list
           <>
-            <CloseButton onClick={() => setIsExpanded(false)}>
+            <CloseButton onClick={() => setisexpanded(false)}>
               <FaTimes />
             </CloseButton>
             <div style={{ marginTop: '20px', width: '100%' }}>
@@ -67,7 +67,7 @@ const LegendControl = ({items}) => {
           </>
         ) : (
           // Collapsed control - show the layers icon button
-          <ControlButton onClick={() => setIsExpanded(true)}>
+          <ControlButton onClick={() => setisexpanded(true)}>
             <FaListUl />
           </ControlButton>
         )}
