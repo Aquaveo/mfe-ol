@@ -1,7 +1,12 @@
 {
   "name": "mfe-ol",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.1.1",
+  "private": false,
+  "main": "dist/index.js",
+  "exports": {
+    ".": "./dist/bundle.js",
+    "./remoteEntry": "./dist/remoteEntry.js"
+  },
   "dependencies": {
     "-": "^0.0.1",
     "@testing-library/jest-dom": "^5.17.0",

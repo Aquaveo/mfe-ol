@@ -1,6 +1,8 @@
 const { ModuleFederationPlugin } = require('webpack').container;
-const Dotenv = require('dotenv-webpack');
+// const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TerserPlugin = require("terser-webpack-plugin");
+
 const path = require('path');
 
 module.exports = {
@@ -9,7 +11,8 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.join(__dirname, 'dist'),
-    // publicPath: 'http://localhost:3000/', // Set the public path for assets
+    libraryTarget: "commonjs2",
+    publicPath: "http://localhost:3000/",
   },
   module: {
     rules: [
@@ -52,12 +55,13 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html'
     }),
-    new Dotenv({
-      path: '.env',
-    }),
   ],
   resolve: {
     extensions: ['.js', '.jsx'],
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin()],
   },
   devServer: {
     port: 3000,

@@ -18,7 +18,6 @@ const Map = (
   }) => {
   
   return (
-
     <MapProvider {...mapConfig} >
         <View {...viewConfig} />
         <Layers>
@@ -43,7 +42,6 @@ const Map = (
             <LayersControl />
             <LegendControl items={legend} />
         </Controls>
-
     </MapProvider>
   );
 }
