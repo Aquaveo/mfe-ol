@@ -31,34 +31,62 @@ const DefaultViewConfig = {
 // Array of layer configurations
 const DefaultLayerConfig = [
     {
-      type: "WebGLTile",
-      props: {
-        source:{
-          type: "ImageTile",
-          props:{
-            url: 'https://server.arcgisonline.com/arcgis/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',
-            attributions: 'Tiles © <a href="https://server.arcgisonline.com/arcgis/rest/services/Canvas/World_Dark_Gray_Base/MapServer">ArcGIS</a>'
-          }
-        },
-        name: "World Dark Gray Base Base Map",
-      }
+        type: "WebGLTile",
+        props: {
+          source:{
+            type: "ImageTile",
+            props:{
+              url: 'https://server.arcgisonline.com/arcgis/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',
+              attributions: 'Tiles © <a href="https://server.arcgisonline.com/arcgis/rest/services/Canvas/World_Dark_Gray_Base/MapServer">ArcGIS</a>'
+            }
+          },
+          name: "World Dark Gray Base Base Map",
+        }
     },
     {
-      type: "ImageLayer",
-      props: {
-        source:{
-          type: "ImageArcGISRest",
-          props:{
-            url: 'https://mapservices.weather.noaa.gov/eventdriven/rest/services/water/riv_gauges/MapServer',
-            params: {
-              LAYERS: "show:0",
-              layerDefs: JSON.stringify({ "0": "status = 'action' or status='minor' or status='moderate' or status='major'" })
+        type: "ImageLayer",
+        props: {
+          source:{
+            type: "ImageArcGISRest",
+            props:{
+              url: 'https://mapservices.weather.noaa.gov/eventdriven/rest/services/water/riv_gauges/MapServer',
+              params: {
+                LAYERS: "show:0",
+                layerDefs: JSON.stringify({ "0": "status = 'action' or status='minor' or status='moderate' or status='major'" })
+              }
             }
-          }
-        },
-        name: "Flooding River Gauges"
-      }
+          },
+          name: "Flooding River Gauges"
+        }
+
     },
+    // {
+    //     type: "VectorLayer",
+    //     props: {
+    //       source:{
+    //         type: "Vector",
+    //         props:{
+    //           url: 'https://openlayers.org/data/vector/ecoregions.json',
+    //           format: {
+    //             type: "GeoJSON",
+    //             props: {}
+    //           }
+    //         }
+    //       },
+    //       style:{
+    //         type: "Style",
+    //         props:{
+    //           stroke: {
+    //             type: "Stroke",
+    //             props:{
+    //               color: "#501020",
+    //               width: 1
+    //             }
+    //           }
+    //       }
+    //     }
+    //   }
+    // }
 ];
 
 

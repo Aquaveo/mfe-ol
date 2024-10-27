@@ -1,5 +1,11 @@
 # MFE-OL MicroFrontEnd Module for Tethys Dash
 
+## Strategies
+
+### Magic Comments for dynamic import
+
+https://javascript.plainenglish.io/how-webpack-handles-dynamic-imports-with-variable-paths-9c598a2aa4e3
+
 ## Wish List
 
 - Need to make the controllers optional: Toggle Layers, and Legend

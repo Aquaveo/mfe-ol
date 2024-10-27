@@ -1,13 +1,15 @@
 import React, {memo} from "react";
 import { MapProvider } from "./providers/MapProvider";
 import Layer from "./components/layers/Layer";
-import Source from "./lib/Source";
+// import Source from "./lib/Source";
 import Layers from "./components/layers/Layers";
 import Controls from "./components/controls/Controls";
 import { LayersControl } from "./components/controls/LayersControl";
 import View from "./components/View";
 import { LegendControl } from "./components/controls/Legend/Legend";
 import { DefaultLayerConfig, DefaultMapConfig, DefaultViewConfig, DefaultLegend } from "./data/defaults";
+// import Module from "./lib/DynamicModule";
+// import Component from "./lib/DynamicComponent";
 
 const Map = (
   { 
@@ -21,7 +23,13 @@ const Map = (
     <MapProvider {...mapConfig} >
         <View {...viewConfig} />
         <Layers>
-        {layers &&
+          {layers &&
+          layers.map((config, index) => (
+            <Layer key={index} config={config} />
+          ))}
+
+
+        {/* {layers &&
           layers.map((config, index) => {
             const {
               type: LayerType,
@@ -30,13 +38,12 @@ const Map = (
                 ...layerProps
               },
             } = config;
-
-            const source = Source({ is: SourceType, ...sourceProps });
-
+            
+            const source = Module({ lib: "source", is: SourceType, ...sourceProps });
             return (
               <Layer key={index} is={LayerType} source={source} {...layerProps} />
             );
-          })}
+          })} */}
         </Layers>
         <Controls>
             <LayersControl />
@@ -47,3 +54,6 @@ const Map = (
 }
 
 export default memo(Map);
+
+
+// Sources will need to be a component

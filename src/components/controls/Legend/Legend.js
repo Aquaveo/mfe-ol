@@ -49,7 +49,6 @@ const LegendControl = ({items}) => {
     <LegendWrapper>
       <LegendControlContainer $isexpanded={isexpanded}>
         {isexpanded ? (
-          // Expanded layer control without title and list
           <>
             <CloseButton onClick={() => setisexpanded(false)}>
               <FaTimes />

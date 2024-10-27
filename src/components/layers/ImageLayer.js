@@ -26,17 +26,6 @@ const ImageLayer = (props) => {
         };
     }, [map]);
 
-    // useEffect(() => {
-    //     if (!map) return;
-
-    //     if (layerRef.current) {
-    //         const visibility = layersVisibility[layerId];
-    //         if (visibility !== undefined) {
-    //             layerRef.current.setVisible(visibility);
-    //         }
-    //     }
-
-    // }, [props.visible]);
 
 };
 
