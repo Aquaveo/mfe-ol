@@ -1,4 +1,4 @@
-import React, {memo} from "react";
+import React, {memo,useState, useEffect} from "react";
 import { MapProvider } from "./providers/MapProvider";
 import Layer from "./components/layers/Layer";
 import Layers from "./components/layers/Layers";
@@ -18,11 +18,44 @@ const Map = (
     mapConfig = DefaultMapConfig, 
     viewConfig = DefaultViewConfig, 
     layers = DefaultLayerConfig, 
-    legend = DefaultLegend
+    legend = DefaultLegend,
+    script2Load = "https://cdn.jsdelivr.net/npm/moment@2.29.1/min/moment.min.js"
   }) => {
+
+    const [scriptLoaded, setScriptLoaded] = useState(false);
+
+    useEffect(() => {
+      // Create a script element
+      const script = document.createElement('script');
+      script.src = script2Load;
+      script.async = true;
   
+      // Define the onload callback to use the library after it has loaded
+      script.onload = () => {
+        if (window.moment) {
+          setScriptLoaded(true);
+        } else {
+          console.error('Moment.js is not available on the window object.');
+        }
+      };
+  
+      // Handle any errors that occur while loading the script
+      script.onerror = () => {
+        console.error('Failed to load the Moment.js script.');
+      };
+  
+      // Append the script to the document body
+      document.body.appendChild(script);
+  
+      // Cleanup function to remove the script when the component unmounts
+      return () => {
+        document.body.removeChild(script);
+        setScriptLoaded(false);
+      };
+    }, []);
+
   return (
-    <MapProvider {...mapConfig} >
+    <MapProvider {...mapConfig} scriptLoaded={scriptLoaded} >
         <View {...viewConfig} />
         <Layers>
           {layers &&

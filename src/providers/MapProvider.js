@@ -8,6 +8,7 @@ export const MapProvider = ({ children, ...props}) => {
   const [map, setMap] = useState(null);
 
   useEffect(() => {
+    console.log(props)
     let options = {
       view: new View({
         center: [0, 0],
@@ -19,19 +20,27 @@ export const MapProvider = ({ children, ...props}) => {
     };
     
     let mapObject = new OlMap(options);
-
-    if (props.events && props.events.click) {
-      if (props.events.click){
-        mapObject.on('click', props.events.click);
-      }
-    }
-    
     mapObject.setTarget(mapRef.current);
     setMap(mapObject);
 
     return () => mapObject.setTarget(undefined);
 
   }, []);
+
+
+  // Load the events of the map, once script has been loaded dynamically
+  useEffect(() => {
+    if (!props.scriptLoaded) return;
+    if (props.events) {
+      if (props.events.click){
+        map.on('click', (evt)=>{
+          console.log(evt.coordinate, window['moment']()[props.events.click.function](props.events.args))
+        });
+      }
+    }
+    
+  }, [props.scriptLoaded]);
+
 
   return (
     <MapContext.Provider value={{ map }}>

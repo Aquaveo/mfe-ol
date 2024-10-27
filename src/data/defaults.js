@@ -13,11 +13,17 @@ const DefaultMapConfig = {
     width: "100%", 
     height: "100vh"
   },
-//   events:{
-//     click: (evt)=>{
-//         mapEvents.onClickMapEvent(evt)
-//     }
-//   }
+  events:{
+    click: {
+      function: "format",
+      args: [
+        "LLLLL"
+      ]
+    }
+    // click: (evt)=>{
+    //     mapEvents.onClickMapEvent(evt)
+    // }
+  }
 };
 
 
