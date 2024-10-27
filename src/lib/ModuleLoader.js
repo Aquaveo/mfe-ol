@@ -1,6 +1,5 @@
 import { moduleMap } from './moduleMap.js';
 
-// moduleLoader.js
 const moduleCache = {};
 
 const moduleLoader = async (config) => {

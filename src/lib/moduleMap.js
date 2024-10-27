@@ -1,4 +1,3 @@
-// moduleMap.js
 export const moduleMap = {
     'ol/layer/WebGLTile.js': () => import('ol/layer/WebGLTile.js'),
     'ol/layer/Image.js': () => import('ol/layer/Image.js'),
