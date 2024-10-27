@@ -41,6 +41,7 @@ const DefaultLayerConfig = [
             }
           },
           name: "World Dark Gray Base Base Map",
+          zIndex: 0
         }
     },
     {
@@ -56,37 +57,41 @@ const DefaultLayerConfig = [
               }
             }
           },
-          name: "Flooding River Gauges"
+          name: "Flooding River Gauges",
+          zIndex: 1
+
         }
 
     },
-    // {
-    //     type: "VectorLayer",
-    //     props: {
-    //       source:{
-    //         type: "Vector",
-    //         props:{
-    //           url: 'https://openlayers.org/data/vector/ecoregions.json',
-    //           format: {
-    //             type: "GeoJSON",
-    //             props: {}
-    //           }
-    //         }
-    //       },
-    //       style:{
-    //         type: "Style",
-    //         props:{
-    //           stroke: {
-    //             type: "Stroke",
-    //             props:{
-    //               color: "#501020",
-    //               width: 1
-    //             }
-    //           }
-    //       }
-    //     }
-    //   }
-    // }
+    {
+        type: "VectorLayer",
+        props: {
+          source:{
+            type: "Vector",
+            props:{
+              url: 'https://openlayers.org/data/vector/ecoregions.json',
+              format: {
+                type: "GeoJSON",
+                props: {}
+              }
+            }
+          },
+          style:{
+            type: "Style",
+            props:{
+              stroke: {
+                type: "Stroke",
+                props:{
+                  color: "#501020",
+                  width: 1
+                }
+              }
+          }
+        },
+        name: "Eco Regions",
+        zIndex: 2
+      }
+    }
 ];
 
 
