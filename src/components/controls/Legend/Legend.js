@@ -16,12 +16,17 @@ const LegendControlContainer = styled.div`
   border: 1px solid #ccc;
   border-radius: 4px;
   width: ${(props) => (props.$isexpanded ? '200px' : '40px')};
-  height: ${(props) => (props.$isexpanded ? 'auto' : '40px')};
+  height: ${(props) => (props.$isexpanded ? '200px' : '40px')};
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const ControlButton = styled.button`
@@ -53,7 +58,14 @@ const LegendControl = ({items}) => {
             <CloseButton onClick={() => setisexpanded(false)}>
               <FaTimes />
             </CloseButton>
-            <div style={{ marginTop: '20px', width: '100%' }}>
+            <div style={
+              { 
+                marginTop: '20px', 
+                width: '100%', 
+                height: '200px', 
+                overflowY:'scroll', 
+              }
+            }>
               {items.map((item, index) => {
                 return (
                   <div key={index} style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
