@@ -6,7 +6,6 @@ const moduleLoader = async (config) => {
   const { type, props } = config;
 
   if (!type) {
-    console.log('No type provided:', config);
     return props;
   }
 
@@ -27,7 +26,7 @@ const moduleLoader = async (config) => {
     moduleCache[type] = ModuleConstructor;
 
     const resolvedProps = await resolveProps(props);
-    console.log('Resolved props for', type, ':', resolvedProps);
+    
     return new ModuleConstructor(resolvedProps);
   } catch (error) {
     console.error(`Failed to load module '${type}':`, error);
@@ -43,7 +42,6 @@ const resolveProps = async (props) => {
 
   for (const key of Object.keys(props)) {
     const value = props[key];
-    console.log('Resolving prop:', key, value);
 
     if (value && typeof value === 'object') {
       if ('type' in value && 'props' in value) {

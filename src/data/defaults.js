@@ -1,10 +1,6 @@
 // Default values for the map, view, layers, and overlays
-
 import { fromLonLat } from "ol/proj";
-// import MapEvents from "./mapEvents";
 
-
-// const mapEvents = new MapEvents();
 
 //Map Config
 const DefaultMapConfig = {
@@ -13,17 +9,15 @@ const DefaultMapConfig = {
     width: "100%", 
     height: "100vh"
   },
-  events:{
-    click: {
-      function: "format",
-      args: [
-        "LLLLL"
-      ]
-    }
-    // click: (evt)=>{
-    //     mapEvents.onClickMapEvent(evt)
-    // }
-  }
+  // events:{
+  //   click: {
+  //     module: 'moment',
+  //     functionPath: ['format'],
+  //     createInstance: false,
+  //     constructorArgs: [], // For moment(), this is empty
+  //     args: ['LLLLL'],
+  //   }
+  // }
 };
 
 
@@ -70,12 +64,14 @@ const DefaultLayerConfig = [
 
     },
     {
+      
         type: "VectorLayer",
         props: {
           source:{
             type: "Vector",
             props:{
-              url: 'https://openlayers.org/data/vector/ecoregions.json',
+              // url: 'https://services3.arcgis.com/GVgbJbqm8hXASVYi/arcgis/rest/services/Parks_and_Open_Space/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&f=geojson',
+              url: 'https://maps.water.noaa.gov/server/rest/services/rfc/rfc_max_forecast/MapServer/0/query?where=1%3D1&outFields=*&f=geojson',
               format: {
                 type: "GeoJSON",
                 props: {}
@@ -94,7 +90,7 @@ const DefaultLayerConfig = [
               }
           }
         },
-        name: "Eco Regions",
+        name: "rfc max forecast (Decreasing Forecast Trend)",
         zIndex: 2
       }
     }
@@ -141,10 +137,23 @@ const DefaultLegend = [
   ];
   
 
+const DefaultOverlays = [
+  {
+    div_id: "overlay-1",
+    div_id: "modal-overlay",
+    autoPan: {
+      animation: {
+        duration: 250,
+      },
+    },
+  }
+]
+
 
 export { 
   DefaultLayerConfig, 
   DefaultViewConfig, 
   DefaultMapConfig,
-  DefaultLegend
+  DefaultLegend,
+  DefaultOverlays
 };
