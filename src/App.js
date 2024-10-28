@@ -23,44 +23,10 @@ const Map = (
     layers = DefaultLayerConfig, 
     legend = DefaultLegend,
     overlays= DefaultOverlays,
-    // script2Load = "https://cdn.jsdelivr.net/npm/moment@2.29.1/min/moment.min.js"
   }) => {
 
-    // const [scriptLoaded, setScriptLoaded] = useState(false);
-
-    // useEffect(() => {
-    //   // Create a script element
-    //   const script = document.createElement('script');
-    //   script.src = script2Load;
-    //   script.async = true;
-  
-    //   // Define the onload callback to use the library after it has loaded
-    //   script.onload = () => {
-    //     if (window.moment) {
-    //       setScriptLoaded(true);
-    //     } else {
-    //       console.error('Script is not available on the window object.');
-    //     }
-    //   };
-  
-    //   // Handle any errors that occur while loading the script
-    //   script.onerror = (e) => {
-    //     console.error(e)
-    //     console.error('Failed to load the script.');
-    //   };
-  
-    //   // Append the script to the document body
-    //   document.body.appendChild(script);
-  
-    //   // Cleanup function to remove the script when the component unmounts
-    //   return () => {
-    //     document.body.removeChild(script);
-    //     setScriptLoaded(false);
-    //   };
-    // }, []);
 
   return (
-    // <MapProvider {...mapConfig} scriptLoaded={scriptLoaded} >
     <MapProvider {...mapConfig} >
         <View {...viewConfig} />
         <Layers>
