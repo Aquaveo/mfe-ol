@@ -1,5 +1,5 @@
 import { Overlay as OlOverlay } from 'ol';
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { useMapContext } from '../../hooks/useMapContext';
 import styled from 'styled-components';
@@ -65,13 +65,12 @@ const Overlay = (props) => {
     };
   }, [map]);
 
-  return createPortal(
-    <div className="modal-overlay" ref={overlayRef}>
-      <OverLayContentWrapper>
-          {props.content}
-      </OverLayContentWrapper>
-    </div>,
-    document.body // Render the overlay into the body or a specific container
+  return(
+    <OverLayContentWrapper>
+      <div id={props.div_id} className={props.div_class} ref={overlayRef}>
+        {props.children}
+      </div>
+    </OverLayContentWrapper>
   );
 };
 
