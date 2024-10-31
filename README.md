@@ -1,5 +1,3 @@
-[//]: <> (start placeholder for auto-badger)
-
 [![version](https://img.shields.io/npm/v/mfe-ol.svg?style=flat-square)](https://npmjs.org/mfe-ol)
 [![min size](https://img.shields.io/bundlephobia/min/mfe-ol?style=flat-square)](https://bundlephobia.com/result?p=mfe-ol)
 [![mingzip size](https://img.shields.io/bundlephobia/minzip/mfe-ol)](https://bundlephobia.com/result?p=mfe-ol)
@@ -14,8 +12,6 @@
 [![number of forks](https://img.shields.io/github/forks/Aquaveo/mfe-ol?style=social)](https://github.com/Aquaveo/mfe-ol/fork)
 
 ###### :heart: to [auto badger](https://github.com/technikhil314/auto-badger) for making badging simple
-
-[//]: <> (end placeholder for auto-badger)
 
 # MFE-OL (MicroFrontEnd Module for Open Layers)
 
