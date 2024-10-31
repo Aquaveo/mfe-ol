@@ -1,6 +1,25 @@
+[//]: <> (start placeholder for auto-badger)
+
+[![version](https://img.shields.io/npm/v/mfe-ol.svg?style=flat-square)](https://npmjs.org/mfe-ol)
+[![min size](https://img.shields.io/bundlephobia/min/mfe-ol?style=flat-square)](https://bundlephobia.com/result?p=mfe-ol)
+[![mingzip size](https://img.shields.io/bundlephobia/minzip/mfe-ol)](https://bundlephobia.com/result?p=mfe-ol)
+[![license](https://img.shields.io/npm/l/mfe-ol?color=%23007a1f&style=flat-square)](https://github.com/Aquaveo/mfe-ol/blob/master/LICENSE)
+
+[![dependancies](https://img.shields.io/librariesio/release/npm/mfe-ol?color=%23007a1f&style=flat-square)](https://libraries.io/npm/mfe-ol)
+[![downloads](https://img.shields.io/npm/dm/mfe-ol?style=flat-square&color=%23007a1f)](https://npmcharts.com/compare/mfe-ol)
+
+[![code of conduct](https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=flat-square)](https://github.com/Aquaveo/mfe-ol/blob/master/CODE_OF_CONDUCT.md)
+
+[![stargazers](https://img.shields.io/github/stars/Aquaveo/mfe-ol?style=social)](https://github.com/Aquaveo/mfe-ol/stargazers)
+[![number of forks](https://img.shields.io/github/forks/Aquaveo/mfe-ol?style=social)](https://github.com/Aquaveo/mfe-ol/fork)
+
+###### :heart: to [auto badger](https://github.com/technikhil314/auto-badger) for making badging simple
+
+[//]: <> (end placeholder for auto-badger)
+
 # MFE-OL (MicroFrontEnd Module for Open Layers)
 
-The following is a react componnt that serves as the UI for the map plugin from the [nwms-plugins](https://github.com/FIRO-Tethys/nwmp_plugins) for the tethysDash application.
+The following is a react component that serves as the UI for the map plugin from the [nwms-plugins](https://github.com/FIRO-Tethys/nwmp_plugins) for the tethysDash application.
 
 ## Getting Started
 
@@ -71,6 +90,55 @@ Finally, you need to edit the `package.json` to expose the entrypoint as well
 ```
 
 the `"."` is the main bundle, while the `"./remoteEntry"` refers to the entrypoint that will be used by the Tethysdash app.
+
+## Use
+
+When the package is ready to use, you need to build it and publish it.
+
+```bash
+$ npm run build
+$ npm publish
+```
+
+Once published you can access the `remoteEntry.js` file on your TethysDash intake driver plugin in the following way:
+
+```python
+    def __init__(self, base_map_layer, zoom, services, huc_id, metadata=None):
+        # self.mfe_unpkg_url = "http://localhost:3000/remoteEntry.js" # if you are developing
+        self.mfe_unpkg_url = "https://unpkg.com/mfe-ol@latest/dist/remoteEntry.js"
+        self.mfe_scope = "mfe_ol"
+        self.mfe_module = "./Map"
+        self.zoom = zoom
+        self.huc_id = huc_id
+        parts = services.split("/")
+        self.service = parts[-3]
+        self.layer_id = int(parts[-1])
+        self.BASE_URL = "/".join(parts[:-3])
+        self.base_map_layer = self.get_esri_base_layer_dict(base_map_layer)
+        self.service_layer = self.get_service_layer_dict()
+        self.center = self.get_center()
+        self.view = self.get_view_config(center=self.center, zoom=self.zoom)
+        self.map_config = self.get_map_config()
+        self.legend = self.make_legend()
+        self.HUC_LAYER = self.get_wbd_layer()
+
+        super(MapVisualization, self).__init__(metadata=metadata)
+
+    def read(self):
+        logger.info("Reading map data configuration")
+        layers = [self.base_map_layer, self.HUC_LAYER, self.service_layer]
+        return {
+            "url": self.mfe_unpkg_url,
+            "scope": self.mfe_scope,
+            "module": self.mfe_module,
+            "props": {
+                "layers": layers,
+                "viewConfig": self.view,
+                "mapConfig": self.map_config,
+                "legend": self.legend,
+            },
+        }
+```
 
 ## TroubleShooting
 
