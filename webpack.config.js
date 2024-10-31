@@ -12,7 +12,6 @@ module.exports = {
     filename: 'bundle.js',
     path: path.join(__dirname, 'dist'),
     libraryTarget: "commonjs2",
-    publicPath: "http://localhost:3000/",
   },
   module: {
     rules: [
