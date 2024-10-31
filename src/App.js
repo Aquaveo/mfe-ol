@@ -1,33 +1,37 @@
-import React, {memo,useState, useEffect} from "react";
-import { MapProvider } from "./providers/MapProvider";
-import Layer from "./components/layers/Layer";
-import Layers from "./components/layers/Layers";
-import Controls from "./components/controls/Controls";
-import { LayersControl } from "./components/controls/LayersControl";
-import View from "./components/View";
-import { LegendControl } from "./components/controls/Legend/Legend";
-import { 
-  DefaultLayerConfig, 
-  DefaultMapConfig, 
-  DefaultViewConfig, 
-  DefaultLegend,
-  DefaultOverlays 
-} from "./data/defaults";
-import Overlays from "./components/overlays/Overlays";
-import Overlay from "./components/overlays/Overlay";
+import React, {memo} from "react";
 
-const Map = (
+import {
+  Map,
+  View,
+  Layer,
+  Layers,
+  Controls,
+  LegendControl,
+  LayersControl,
+  Overlays,
+  OverLay,
+} from 'backlayer';
+
+import {
+  DemoLayers,
+  DemoViewConfig,
+  DemoMapConfig,
+  DemoLegend,
+  DemoOverlays,
+} from 'backlayer/demo';
+
+const MapComponent = (
   { 
-    mapConfig = DefaultMapConfig, 
-    viewConfig = DefaultViewConfig, 
-    layers = DefaultLayerConfig, 
-    legend = DefaultLegend,
-    overlays= DefaultOverlays,
+    mapConfig = DemoMapConfig, 
+    viewConfig = DemoViewConfig, 
+    layers = DemoLayers, 
+    legend = DemoLegend,
+    overlays= DemoOverlays,
   }) => {
 
-
+  console.log("Map", View)
   return (
-    <MapProvider {...mapConfig} >
+    <Map {...mapConfig} >
         <View {...viewConfig} />
         <Layers>
           {layers &&
@@ -42,13 +46,13 @@ const Map = (
         <Overlays>
           {overlays && 
           overlays.map((config, index) => (
-            <Overlay key={index} {...config.props}></Overlay>
+            <OverLay key={index} {...config.props}></OverLay>
           ))
           }
 
         </Overlays>
-    </MapProvider>
+    </Map>
   );
 }
 
-export default memo(Map);
+export default memo(MapComponent);

@@ -37,7 +37,7 @@ module.exports = {
       name: 'mfe_ol',
       filename: 'remoteEntry.js',
       exposes: {
-        './Map': './src/App', // Adjusted path to exposed module
+        './MapComponent': './src/App', // Adjusted path to exposed module
       },
       shared: {
         'react': {
