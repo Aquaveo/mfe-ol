@@ -29,7 +29,6 @@ const MapComponent = (
     overlays= DemoOverlays,
   }) => {
 
-  console.log("Map", View)
   return (
     <Map {...mapConfig} >
         <View {...viewConfig} />
